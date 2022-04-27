@@ -9,10 +9,12 @@ const userScore_span = document.getElementById("user-score");
 /** */
 const computerScore_span = document.getElementById("computer-score");
 const scoreboard_div = document.querySelector(".score-board");
-const result_div = document.querySelector(".result");
+const result_div = document.querySelector(".result>p");
 const rock_div = document.getElementById("r");
 const paper_div = document.getElementById("p");
 const scissors_div = document.getElementById("s");
+
+
 
 /*^ Above is a case of storing variable referene points to they can be reused 32min;
  - makes things more efficient*/
@@ -43,10 +45,14 @@ function win(userChoice, computerChoice) {
     console.log("winner")
     console.log(userScore)
     console.log(computerScore)*/
-    result_div.innerHTML = `${letter2Word(userChoice)} beats ${letter2Word(computerChoice)}. You Win!`;
+    var smallUser = "(User)".fontsize(3); /*******WHY DOES FONTSIZ HAVE A LINE THROUGH IT*******/
+    var smallComp = "(Comp)".fontsize(3);
+    result_div.innerHTML = `${letter2Word(userChoice)}${smallUser} beats ${letter2Word(computerChoice)}${smallComp}. You Win!`;
     /*refer to 1hr in  for result reference*/
+    console.log("winner")
 
 }
+
 
 function letter2Word(character) {
     if (character === "r")
@@ -56,12 +62,21 @@ function letter2Word(character) {
     return "scissors"
 }
 
-function lose() {
+function lose(userChoice, computerChoice) {
     computerScore++;
-    /*console.log("loser")
-    console.log(userScore)
-    console.log(computerScore)*/
+    computerScore_span.innerHTML = computerScore;
+    console.log("loser")
+    var smallUser = "(User)".fontsize(3); /*******WHY DOES FONTSIZ HAVE A LINE THROUGH IT*******/
+    var smallComp = "(Comp)".fontsize(3);
+    result_div.innerHTML = wordUpgrade(computerChoice) + smallComp + " beats " + wordUpgrade(userChoice) + smallUser + ". You lose!"
+        /*console.log(userScore)
+          console.log(computerScore)*/
+}
 
+function wordUpgrade(word) {
+    if (word === "r") return "ROCK";
+    if (word === "p") return "PAPER";
+    return "SCISSORS"
 }
 
 function tie() {

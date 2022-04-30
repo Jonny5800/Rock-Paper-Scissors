@@ -17,6 +17,12 @@ header {
     padding: 20px;
 }
 
+
+/*
+winner and loser colors
+box shadow format: X-horizontal X-vertical  Xpx-Blur X-optional value for spread X-Color;
+*/
+
 header>h1 {
     color: midnightblue;
     text-align: center;

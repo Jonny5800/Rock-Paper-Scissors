@@ -45,9 +45,9 @@ function win(userChoice, computerChoice) {
     console.log("winner")
     console.log(userScore)
     console.log(computerScore)*/
-    var smallUser = "(User)".fontsize(3); /*******WHY DOES FONTSIZ HAVE A LINE THROUGH IT*******/
-    var smallComp = "(Comp)".fontsize(3);
-    result_div.innerHTML = `${letter2Word(userChoice)}${smallUser} beats ${letter2Word(computerChoice)}${smallComp}. You Win!`;
+    var smallUser = "(User)".fontsize(3).sub(); /*******WHY DOES FONTSIZE HAVE A LINE THROUGH IT 1H7*******/
+    var smallComp = "(Comp)".fontsize(3).sub();
+    result_div.innerHTML = `${letter2Word(userChoice)}${smallUser} beats ${letter2Word(computerChoice)}${smallComp} You Win!`;
     /*refer to 1hr in  for result reference*/
     console.log("winner")
 
@@ -68,7 +68,7 @@ function lose(userChoice, computerChoice) {
     console.log("loser")
     var smallUser = "(User)".fontsize(3); /*******WHY DOES FONTSIZ HAVE A LINE THROUGH IT*******/
     var smallComp = "(Comp)".fontsize(3);
-    result_div.innerHTML = wordUpgrade(computerChoice) + smallComp + " beats " + wordUpgrade(userChoice) + smallUser + ". You lose!"
+    result_div.innerHTML = wordUpgrade(computerChoice) + smallComp + " beats " + wordUpgrade(userChoice) + smallUser + " You lose!"
         /*console.log(userScore)
           console.log(computerScore)*/
 }
@@ -79,8 +79,14 @@ function wordUpgrade(word) {
     return "SCISSORS"
 }
 
-function tie() {
+function tie(computerChoice, userChoice) {
     console.log("draww")
+    computerScore_span.innerHTML = computerScore;
+    userScore_span.innerHTML = userScore;
+    console.log("loser")
+    var smallUser = "(User)".fontsize(3); /*******WHY DOES FONTSIZ HAVE A LINE THROUGH IT*******/
+    var smallComp = "(Comp)".fontsize(3);
+    result_div.innerHTML = wordUpgrade(computerChoice) + smallComp + " matches " + wordUpgrade(userChoice) + smallUser + " It's a draw"
 
 }
 

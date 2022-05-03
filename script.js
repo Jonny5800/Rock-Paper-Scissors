@@ -32,6 +32,9 @@ console.log(getComputerChoice());
 /*Below 
 Win function parameters can be anything BUT need to reference the switch statement below*/
 function win(userChoice, computerChoice) {
+    var smallUser = "(User)".fontsize(3).sub(); /*******WHY DOES FONTSIZE HAVE A LINE THROUGH IT 1H7*******/
+    var smallComp = "(Comp)".fontsize(3).sub();
+    const userChoiceDiv = document.getElementById(userChoice)
     userScore++;
 
     userScore_span.innerHTML = userScore;
@@ -45,11 +48,15 @@ function win(userChoice, computerChoice) {
     console.log("winner")
     console.log(userScore)
     console.log(computerScore)*/
-    var smallUser = "(User)".fontsize(3).sub(); /*******WHY DOES FONTSIZE HAVE A LINE THROUGH IT 1H7*******/
-    var smallComp = "(Comp)".fontsize(3).sub();
+
     result_div.innerHTML = `${letter2Word(userChoice)}${smallUser} beats ${letter2Word(computerChoice)}${smallComp} You Win!`;
     /*refer to 1hr in  for result reference*/
     console.log("winner")
+        /*Below is how the color is made for a winning "choice" 
+        - ".classList" This gives an arrary of all the classes on the element preceeding it (so here, on userChoice) 
+        - ".add()" Using this, after classList allows you to add an extra class*/
+    userChoiceDiv.classList.add("green-glow");
+    setTimeout(function() { userChoiceDiv.classList.remove("green-glow") }, 300)
 
 }
 
@@ -63,14 +70,17 @@ function letter2Word(character) {
 }
 
 function lose(userChoice, computerChoice) {
+    var smallUser = "(User)".fontsize(3); /*******WHY DOES FONTSIZ HAVE A LINE THROUGH IT*******/
+    var smallComp = "(Comp)".fontsize(3);
     computerScore++;
     computerScore_span.innerHTML = computerScore;
     console.log("loser")
-    var smallUser = "(User)".fontsize(3); /*******WHY DOES FONTSIZ HAVE A LINE THROUGH IT*******/
-    var smallComp = "(Comp)".fontsize(3);
+
     result_div.innerHTML = wordUpgrade(computerChoice) + smallComp + " beats " + wordUpgrade(userChoice) + smallUser + " You lose!"
         /*console.log(userScore)
           console.log(computerScore)*/
+    document.getElementById(userChoice).classList.add("red-glow")
+    setTimeout(function() { document.getElementById(userChoice).classList.remove("red-glow") }, 300)
 }
 
 function wordUpgrade(word) {
@@ -83,10 +93,11 @@ function tie(computerChoice, userChoice) {
     console.log("draww")
     computerScore_span.innerHTML = computerScore;
     userScore_span.innerHTML = userScore;
-    console.log("loser")
     var smallUser = "(User)".fontsize(3); /*******WHY DOES FONTSIZ HAVE A LINE THROUGH IT*******/
     var smallComp = "(Comp)".fontsize(3);
     result_div.innerHTML = wordUpgrade(computerChoice) + smallComp + " matches " + wordUpgrade(userChoice) + smallUser + " It's a draw"
+    document.getElementById(userChoice).classList.add("grey-glow")
+    setTimeout(function() { document.getElementById(userChoice).classList.remove("grey-glow") }, 300)
 
 }
 
@@ -115,19 +126,9 @@ function game(userChoice) {
 
 
 function main() {
-    rock_div.addEventListener('click', function() {
-        game("r");
-    });
-
-    paper_div.addEventListener('click', function() {
-        game("p");
-    })
-
-
-    scissors_div.addEventListener('click', function() {
-        game("s");
-    })
-
+    rock_div.addEventListener('click', () => game("r"));
+    paper_div.addEventListener('click', () => game("p"));
+    scissors_div.addEventListener('click', () => game("s"));
 }
 
 main()
